@@ -1,6 +1,6 @@
-import { mount } from '../engine/mount.js?v=4fc8ef5321';
-import { makeRng } from '../engine/rng.js?v=4fc8ef5321';
-import { GAMES } from '../manifest.js?v=4fc8ef5321';
+import { mount } from '../engine/mount.js?v=51ac2eb329';
+import { makeRng } from '../engine/rng.js?v=51ac2eb329';
+import { GAMES } from '../manifest.js?v=51ac2eb329';
 const rgba = (hex, a) => {
     const n = parseInt(hex.slice(1), 16);
     return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
@@ -51,7 +51,8 @@ function card(g, seed) {
 const grid = document.getElementById('grid');
 GAMES.forEach((g, i) => grid.appendChild(card(g, 101 + i * 7)));
 const ready = GAMES.filter((g) => g.ready).length;
+const soon = GAMES.length - ready;
 const el = document.getElementById('count');
 if (el)
-    el.textContent = `${ready} oyun hazır · ${GAMES.length - ready} yolda`;
+    el.textContent = soon ? `${ready} oyun · ${soon} yolda` : `${ready} oyun · kayıt yok`;
 //# sourceMappingURL=home.js.map

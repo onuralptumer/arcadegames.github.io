@@ -1,5 +1,5 @@
-import { Nobet } from './game.js?v=4fc8ef5321';
-import { NobetBot } from './bot.js?v=4fc8ef5321';
+import { Nobet } from './game.js?v=51ac2eb329';
+import { NobetBot } from './bot.js?v=51ac2eb329';
 const mod = {
     Game: Nobet,
     makeBot: (rng) => new NobetBot(rng, 0.85),

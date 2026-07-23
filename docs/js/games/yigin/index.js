@@ -1,5 +1,5 @@
-import { Yigin } from './game.js?v=4fc8ef5321';
-import { YiginBot } from './bot.js?v=4fc8ef5321';
+import { Yigin } from './game.js?v=51ac2eb329';
+import { YiginBot } from './bot.js?v=51ac2eb329';
 const mod = {
     Game: Yigin,
     makeBot: (rng) => new YiginBot(rng, 0.85),

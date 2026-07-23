@@ -1,4 +1,4 @@
-import { PIECES, rotated } from './pieces.js?v=4fc8ef5321';
+import { PIECES, rotated } from './pieces.js?v=51ac2eb329';
 const BASE = { ax: 0, ay: 0, action: false, pressed: false, pointer: null };
 /**
  * Klasik yükseklik/delik/pürüz sezgiseli. Tahtanın tamamını görmez, yalnızca

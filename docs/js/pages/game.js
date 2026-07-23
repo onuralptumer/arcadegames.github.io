@@ -1,5 +1,5 @@
-import { mount } from '../engine/mount.js?v=4fc8ef5321';
-import { bySlug } from '../manifest.js?v=4fc8ef5321';
+import { mount } from '../engine/mount.js?v=51ac2eb329';
+import { bySlug } from '../manifest.js?v=51ac2eb329';
 const rgba = (hex, a) => {
     const n = parseInt(hex.slice(1), 16);
     return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;

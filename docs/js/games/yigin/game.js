@@ -1,4 +1,4 @@
-import { KICKS, PIECES, rotated } from './pieces.js?v=4fc8ef5321';
+import { KICKS, PIECES, rotated } from './pieces.js?v=51ac2eb329';
 /** Yatay basılı tutmada ilk gecikme ve tekrar aralığı (saniye). */
 const DAS = 0.17;
 const ARR = 0.045;

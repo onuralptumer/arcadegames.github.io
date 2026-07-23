@@ -1,5 +1,5 @@
-import { Katla } from './game.js?v=4fc8ef5321';
-import { KatlaBot } from './bot.js?v=4fc8ef5321';
+import { Katla } from './game.js?v=51ac2eb329';
+import { KatlaBot } from './bot.js?v=51ac2eb329';
 const mod = {
     Game: Katla,
     makeBot: (rng) => new KatlaBot(rng),

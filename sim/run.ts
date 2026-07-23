@@ -11,12 +11,26 @@ import { Nobet } from '../src/games/nobet/game.js';
 import { NobetBot } from '../src/games/nobet/bot.js';
 import { Katla } from '../src/games/katla/game.js';
 import { KatlaBot } from '../src/games/katla/bot.js';
+import { Gecit } from '../src/games/gecit/game.js';
+import { GecitBot } from '../src/games/gecit/bot.js';
+import { Sekme } from '../src/games/sekme/game.js';
+import { SekmeBot } from '../src/games/sekme/bot.js';
+import { Kalkan } from '../src/games/kalkan/game.js';
+import { KalkanBot } from '../src/games/kalkan/bot.js';
+import { Savruk } from '../src/games/savruk/game.js';
+import { SavrukBot } from '../src/games/savruk/bot.js';
+import { Kume } from '../src/games/kume/game.js';
+import { KumeBot } from '../src/games/kume/bot.js';
+import { Dolambac } from '../src/games/dolambac/game.js';
+import { DolambacBot } from '../src/games/dolambac/bot.js';
 import type { Game, GameClass, InputSource, Mode } from '../src/engine/types.js';
 
 const stub = (): any => ({
-  fillStyle: '', globalAlpha: 1, font: '', textAlign: '', textBaseline: '',
-  fillRect() {}, beginPath() {}, arc() {}, arcTo() {}, moveTo() {}, closePath() {},
-  fill() {}, fillText() {},
+  fillStyle: '', strokeStyle: '', lineWidth: 1, globalAlpha: 1,
+  font: '', textAlign: '', textBaseline: '',
+  fillRect() {}, strokeRect() {}, beginPath() {}, arc() {}, arcTo() {},
+  moveTo() {}, lineTo() {}, closePath() {}, fill() {}, stroke() {},
+  fillText() {}, save() {}, restore() {}, translate() {}, rotate() {},
 });
 
 interface Case {
@@ -61,6 +75,12 @@ const cases: [string, GameClass, (r: () => number) => InputSource, { w: number; 
   ['Yığın', Yigin, (r) => new YiginBot(r, 0.85), { w: 200, h: 400 }],
   ['Nöbet', Nobet, (r) => new NobetBot(r, 0.85), { w: 200, h: 260 }],
   ['Katla', Katla, (r) => new KatlaBot(r), { w: 200, h: 200 }],
+  ['Savruk', Savruk, (r) => new SavrukBot(r), { w: 200, h: 200 }],
+  ['Dolambaç', Dolambac, (r) => new DolambacBot(r), { w: 200, h: 158 }],
+  ['Küme', Kume, (r) => new KumeBot(r), { w: 200, h: 260 }],
+  ['Geçit', Gecit, (r) => new GecitBot(r), { w: 200, h: 200 }],
+  ['Kalkan', Kalkan, (r) => new KalkanBot(r), { w: 200, h: 160 }],
+  ['Sekme', Sekme, (r) => new SekmeBot(r), { w: 200, h: 300 }],
 ];
 
 console.log('\nOYUN (60 tick, 5 dakika)');
