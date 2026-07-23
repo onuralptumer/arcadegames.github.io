@@ -1,6 +1,7 @@
-import { mkdir, writeFile, readFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { mkdir, writeFile, readFile, readdir } from 'node:fs/promises';
+import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -33,6 +34,47 @@ while ((m = re.exec(src))) {
 // bir kez yazilir. SITE_URL ortam degiskeni onu ezer.
 const pkg = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'));
 const SITE_URL = (process.env.SITE_URL || pkg.homepage || '').replace(/\/+$/, '');
+
+/**
+ * Onbellek kirma. Dosya adlari degismedigi icin tarayici ve GitHub Pages eski
+ * JS'i sunmaya devam ediyor; kullanici siteyi guncelledigini sanip eski surumu
+ * goruyor. Cozum: tum JS'in icerik ozetini hesaplayip her import'a ?v=<ozet>
+ * eklemek. Tek harf degisse ozet degisir, tarayici hepsini yeniden ceker.
+ */
+async function walk(dir) {
+  const out = [];
+  for (const e of await readdir(dir, { withFileTypes: true })) {
+    const full = resolve(dir, e.name);
+    if (e.isDirectory()) out.push(...(await walk(full)));
+    else if (e.name.endsWith('.js')) out.push(full);
+  }
+  return out;
+}
+
+const jsDir = resolve(root, 'docs/js');
+let VERSION = '0';
+try {
+  const files = (await walk(jsDir)).sort();
+  const h = createHash('sha1');
+  const bodies = [];
+  for (const f of files) {
+    // Onceki calistirmadan kalan sorgu varsa temizle: iki kez eklenmesin.
+    const body = (await readFile(f, 'utf8')).replace(/(\.js)\?v=[a-f0-9]+/g, '$1');
+    bodies.push([f, body]);
+    h.update(relative(jsDir, f).replace(/\\/g, '/')).update(body);
+  }
+  VERSION = h.digest('hex').slice(0, 10);
+
+  for (const [f, body] of bodies) {
+    const tagged = body.replace(
+      /(from\s*['"]|import\(\s*['"])(\.{1,2}\/[^'"]+\.js)(['"])/g,
+      (_m, a, spec, q) => `${a}${spec}?v=${VERSION}${q}`
+    );
+    await writeFile(f, tagged, 'utf8');
+  }
+} catch {
+  // docs/js henuz yok (tsc calismamis). Surumsuz devam et.
+}
 
 const esc = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -83,7 +125,7 @@ ${SITE_URL ? `<link rel="canonical" href="${SITE_URL}/oyun/${g.slug}.html">` : '
 
   <a class="back" href="../index.html">← tüm oyunlar</a>
 </div>
-<script type="module" src="../js/pages/game.js"></script>
+<script type="module" src="../js/pages/game.js?v=${VERSION}"></script>
 </body>
 </html>
 `;
@@ -110,4 +152,13 @@ ${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}
   'utf8'
 );
 
-console.log(`${n} oyun sayfası + sitemap üretildi (${games.length} kayıt).`);
+// index.html elle yazilan bir dosya; sadece script surgusunu guncelliyoruz.
+const idxPath = resolve(root, 'docs/index.html');
+const idx = await readFile(idxPath, 'utf8');
+const idxNew = idx.replace(
+  /(src="\.\/js\/pages\/home\.js)(\?v=[a-f0-9]+)?(")/,
+  `$1?v=${VERSION}$3`
+);
+if (idxNew !== idx) await writeFile(idxPath, idxNew, 'utf8');
+
+console.log(`${n} oyun sayfası + sitemap üretildi (${games.length} kayıt). Sürüm ${VERSION}.`);

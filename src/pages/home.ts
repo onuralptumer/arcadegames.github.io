@@ -60,5 +60,6 @@ const grid = document.getElementById('grid')!;
 GAMES.forEach((g, i) => grid.appendChild(card(g, 101 + i * 7)));
 
 const ready = GAMES.filter((g) => g.ready).length;
+const soon = GAMES.length - ready;
 const el = document.getElementById('count');
-if (el) el.textContent = `${ready} oyun hazır · ${GAMES.length - ready} yolda`;
+if (el) el.textContent = soon ? `${ready} oyun · ${soon} yolda` : `${ready} oyun · kayıt yok`;
