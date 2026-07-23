@@ -1,0 +1,172 @@
+:root {
+  --page: #fbfbf9;
+  --card: #ffffff;
+  --ink: #16161a;
+  --muted: #6e6e76;
+  --hair: #e5e5e0;
+  --stage: #141416;
+  --accent: var(--ink);
+  --r: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #0e0e10;
+    --card: #17171a;
+    --ink: #f2f2ef;
+    --muted: #9a9aa2;
+    --hair: #26262b;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 400 15px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Arcade mirası: skorlar daima eşit genişlikte. Tek tipografik jest bu. */
+.num {
+  font: 500 clamp(20px, 5vw, 26px)/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+a { color: inherit; }
+
+.wrap { max-width: 940px; margin: 0 auto; padding: 24px 20px 80px; }
+
+.top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.top__logo { font-weight: 500; letter-spacing: -0.01em; text-decoration: none; }
+.top__note { font-size: 13px; color: var(--muted); }
+
+.lede { margin: 30px 0 22px; }
+.lede h1 {
+  margin: 0 0 6px;
+  font-size: clamp(22px, 4.4vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.lede p { margin: 0; color: var(--muted); }
+
+/* ---- ana sayfa ızgarası ---- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.card:hover, .card:focus-visible { transform: translateY(-2px); border-color: var(--ink); }
+.card:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.card--soon { opacity: .5; }
+
+.card__art { position: relative; aspect-ratio: 200 / 88; }
+.card__art canvas { display: block; width: 100%; height: 100%; }
+
+.card__tag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 7px;
+}
+.card__soon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
+  color: #fff;
+  opacity: .85;
+}
+
+.card__meta { padding: 11px 13px 13px; }
+.card__kind { margin: 0 0 3px; font-size: 14px; font-weight: 500; }
+.card__blurb { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+
+/* ---- oyun sayfası ---- */
+
+.play { margin-top: 26px; display: grid; gap: 22px; justify-items: center; }
+
+.stage-wrap { position: relative; width: 100%; max-width: 380px; }
+
+#stage {
+  display: block;
+  width: 100%;
+  border-radius: var(--r);
+  background: var(--stage);
+  touch-action: none;
+  outline: none;
+}
+#stage:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 380px;
+  margin-top: 12px;
+}
+.hud__label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  justify-items: center;
+  background: rgba(20, 20, 22, .88);
+  border-radius: var(--r);
+  text-align: center;
+  color: #f2f2ef;
+}
+.overlay[hidden] { display: none; }
+.overlay p { margin: 0; font-size: 13px; opacity: .7; }
+
+.btn {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+}
+.btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+.tips { max-width: 380px; width: 100%; }
+.tips h2 { font-size: 13px; font-weight: 500; color: var(--muted); margin: 0 0 6px; }
+.tips p { margin: 0; font-size: 14px; color: var(--muted); }
+
+.back { display: inline-block; margin-top: 30px; font-size: 14px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

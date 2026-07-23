@@ -1,0 +1,21 @@
+{
+  "name": "arcade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && node tools/pages.mjs",
+    "dev": "tsc --watch",
+    "serve": "python3 -m http.server 8080 --directory docs",
+    "check": "npm run build && git diff --exit-code --stat -- docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "private": true,
+  "type": "module",
+  "homepage": "https://KULLANICI.github.io/arcade"
+}

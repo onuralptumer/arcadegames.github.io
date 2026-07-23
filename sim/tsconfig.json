@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "rootDir": "..", "outDir": "../.simout", "noEmit": false, "noUnusedLocals": false },
+  "include": ["run.ts","dbg.ts","dbg2.ts","demo.ts", "../src/**/*.ts"]
+}

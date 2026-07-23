@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Deflekt — tarayıcıda ücretsiz oyna</title>
+<meta name="description" content="Topu paletle sektir, tüm tuğlaları kır. Her seviyede hızlanır. Kurulum yok, kayıt yok.">
+<meta name="theme-color" content="#D85A30">
+<link rel="canonical" href="https://KULLANICI.github.io/arcade/oyun/deflekt.html">
+<link rel="stylesheet" href="../style.css">
+<style>:root{--accent:#D85A30}</style>
+</head>
+<body data-game="deflekt">
+<div class="wrap">
+  <nav class="top">
+    <a class="top__logo" href="../index.html">arcade</a>
+    <span class="top__note">Tuğla kırma</span>
+  </nav>
+
+  <div class="lede">
+    <h1>Deflekt</h1>
+    <p>Topu paletle sektir, tüm tuğlaları kır. Her seviyede hızlanır.</p>
+  </div>
+
+  <main class="play">
+    <div class="stage-wrap">
+      <canvas id="stage" tabindex="0" aria-label="Deflekt oyun alanı"></canvas>
+      <div class="overlay" id="overlay" hidden>
+        <p>Skorun</p>
+        <span class="num" id="final">0</span>
+        <button class="btn" id="again">Yeniden oyna</button>
+      </div>
+      <div class="hud">
+        <div><span class="hud__label">skor</span><span class="num" id="score">0</span></div>
+        <div><span class="hud__label">en iyi</span><span class="num" id="best">0</span></div>
+      </div>
+    </div>
+
+    <section class="tips">
+      <h2>Kontroller</h2>
+      <p>Fare, dokunma veya ok tuşları. Boşluk fırlatır.</p>
+    </section>
+  </main>
+
+  <a class="back" href="../index.html">← tüm oyunlar</a>
+</div>
+<script type="module" src="../js/pages/game.js"></script>
+</body>
+</html>

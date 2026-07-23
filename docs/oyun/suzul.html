@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Süzül — tarayıcıda ücretsiz oyna</title>
+<meta name="description" content="Tek tuşla yüksekliğini koru, boşluklardan geç. Sonu yok. Kurulum yok, kayıt yok.">
+<meta name="theme-color" content="#EF9F27">
+<link rel="canonical" href="https://KULLANICI.github.io/arcade/oyun/suzul.html">
+<link rel="stylesheet" href="../style.css">
+<style>:root{--accent:#EF9F27}</style>
+</head>
+<body data-game="suzul">
+<div class="wrap">
+  <nav class="top">
+    <a class="top__logo" href="../index.html">arcade</a>
+    <span class="top__note">Tek tuş</span>
+  </nav>
+
+  <div class="lede">
+    <h1>Süzül</h1>
+    <p>Tek tuşla yüksekliğini koru, boşluklardan geç. Sonu yok.</p>
+  </div>
+
+  <main class="play">
+    <div class="stage-wrap">
+      <canvas id="stage" tabindex="0" aria-label="Süzül oyun alanı"></canvas>
+      <div class="overlay" id="overlay" hidden>
+        <p>Skorun</p>
+        <span class="num" id="final">0</span>
+        <button class="btn" id="again">Yeniden oyna</button>
+      </div>
+      <div class="hud">
+        <div><span class="hud__label">skor</span><span class="num" id="score">0</span></div>
+        <div><span class="hud__label">en iyi</span><span class="num" id="best">0</span></div>
+      </div>
+    </div>
+
+    <section class="tips">
+      <h2>Kontroller</h2>
+      <p>Boşluk, tıklama veya dokunma.</p>
+    </section>
+  </main>
+
+  <a class="back" href="../index.html">← tüm oyunlar</a>
+</div>
+<script type="module" src="../js/pages/game.js"></script>
+</body>
+</html>
