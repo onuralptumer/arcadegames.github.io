@@ -1,5 +1,5 @@
-import { Deflekt } from './game.js';
-import { DeflektBot } from './bot.js';
+import { Deflekt } from './game.js?v=4fc8ef5321';
+import { DeflektBot } from './bot.js?v=4fc8ef5321';
 const mod = {
     Game: Deflekt,
     makeBot: (rng) => new DeflektBot(rng, 0.8),

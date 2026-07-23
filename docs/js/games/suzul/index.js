@@ -1,5 +1,5 @@
-import { Suzul } from './game.js';
-import { SuzulBot } from './bot.js';
+import { Suzul } from './game.js?v=4fc8ef5321';
+import { SuzulBot } from './bot.js?v=4fc8ef5321';
 const mod = {
     Game: Suzul,
     makeBot: (rng) => new SuzulBot(rng, 0.87),

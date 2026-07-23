@@ -1,5 +1,5 @@
-import { Kivrim } from './game.js';
-import { KivrimBot } from './bot.js';
+import { Kivrim } from './game.js?v=4fc8ef5321';
+import { KivrimBot } from './bot.js?v=4fc8ef5321';
 const mod = {
     Game: Kivrim,
     makeBot: (rng) => new KivrimBot(rng, 0.93),

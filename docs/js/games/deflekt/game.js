@@ -1,4 +1,4 @@
-import { DEMO_PATTERN, LEVELS } from './levels.js';
+import { DEMO_PATTERN, LEVELS } from './levels.js?v=4fc8ef5321';
 const COLS = 10;
 export class Deflekt {
     o;

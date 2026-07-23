@@ -46,6 +46,24 @@ commit etmek. İki koruma var:
 - `.github/workflows/check.yml` — aynı kontrolü her it ve PR'da koşar
   (Pages ayarına dokunmaz, yalnızca uyarır)
 
+### Eski sürüm görünüyorsa
+
+Site güncellenmiş gibi görünüp eski hâlini gösteriyorsa sıra şu:
+
+```bash
+git ls-files docs/js | wc -l     # 0 ise derleme commit edilmemiş
+grep -c "ready: true" src/manifest.ts
+grep -o 'home.js?v=[a-f0-9]*' docs/index.html   # sürüm etiketi
+```
+
+Yayındaki sürümü tarayıcıda karşılaştır: sayfa kaynağındaki `?v=` değeri yereldeki
+ile aynı değilse yeni derleme henüz push edilmemiş demektir.
+
+`npm run build` her JS dosyasının içerik özetinden bir sürüm hesaplar ve tüm
+`import` satırlarına `?v=<özet>` ekler. Tek harf değişse özet değişir ve tarayıcı
+her şeyi yeniden çeker — dosya adları sabit kaldığı için bu olmadan tarayıcı ve
+GitHub Pages eski JS'i saatlerce sunmaya devam ediyordu.
+
 ### Cloudflare Pages / Netlify
 
 Build komutu `npm run build`, çıktı dizini `docs`.

@@ -1,6 +1,6 @@
-import { makeRng } from './rng.js';
-import { HumanInput, NullInput } from './input.js';
-import { Runner, scheduler } from './scheduler.js';
+import { makeRng } from './rng.js?v=4fc8ef5321';
+import { HumanInput, NullInput } from './input.js?v=4fc8ef5321';
+import { Runner, scheduler } from './scheduler.js?v=4fc8ef5321';
 const noop = () => { };
 export function mount(canvas, GameCtor, opts) {
     const ctx = canvas.getContext('2d', { alpha: false });
